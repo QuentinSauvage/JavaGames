@@ -1,0 +1,50 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}     
+
+\title{Compte-rendu du jeu Dots and boxes}
+\author{Quentin \bsc{SAUVAGE}}
+\date{01 Mars 2017}
+
+\begin{document}
+\maketitle
+\chapter{Fonctionnement du programme}
+Le jeu se lance sur un menu demandant au joueur d'entrer les paramètres de la partie : La taille du plateau, le nombre de joueurs, et la présence ou non de l'Intelligence Artificielle.
+Une fois que le joueur a validé ces paramètres, le plateau s'affiche, ainsi que le nombre de points marqués par chaque joueur présent. Le joueur 1 joue en premier. 
+
+Une fois qu'un joueur totalise plus de la moitié des cases, il est déclaré vainqueur. Le programme demande alors au joueur s'il veut recommencer une partie ou s'il veut quitter le jeu. Dans le premier cas, il pourra alors changer les paramètres de jeu.
+
+\chapter{Structure du programme}
+
+Voici le rôle de chacune des classes du programme:
+
+- Constantes est une classe abstraite qui regroupe les constantes du jeu permettant de mettre en place le déroulement de la partie. On y retrouve : Le nombre de colonnes/lignes de traits, le nombre de pixels par case, le nombre de joueurs, et l'activation ou non de l'IA.
+
+- Carres est un JPanel qui permet de dessiner tous les carrés dont les côtés sont coloriés, en fonction de la couleur qui leur a été attribuée.
+
+- Couleurs est une Enum listant les couleurs associées à chaque joueur.
+
+- DemoJeu permet de créer le jeu et de le lancer.
+
+- Fenetre est une JFrame qui permet au Jeu de communiquer avec les éléments graphiques, et inversement.
+
+- Jeu gère l'IA et les actions des joueurs humains. Les attributs permettant de connaître l'avancement de la partie sont également présents.
+
+- OptionPaneFin est une boîte de dialogue s'affichant lorsque le jeu prend fin, demandant au joueur s'il souhaite refaire une partie, et informant également du vainqueur de la partie.
+
+- PanneauChoix est un JPanel qui demande au joueur d'entrer les paramètres de la partie.
+
+- PanneauManches est un JPanel situé à gauche et à droite du plateau. Il y a deux PanneauManches, et chacun gère le nombre de points marqués respectivement par les deux premiers et les deux derniers joueurs.
+
+- Plateau est un JPanel permettant de fixer la taille du plateau en fonction des paramètres données.
+
+- SlideChoix est un JSlider indiquant au joueur la valeur actuellement sélectionnée pour la taille du plateau et pur le nombre de joueurs.
+
+- Trait est un JButton qui gère les évènements Souris créés par le joueur : Au survol, le trait prendra la couleur du joueur, s'il n'a pas encore été cliqué, et reprendra sa couleur d'origine (noire) lorsque la souris sortira. Au clic, il prendra définitivement la couleur du joueur et en informera le Jeu.
+
+\chapter{Fonctionnement de l'IA}
+\section{Premier fonctionnement de l'IA}
+L'IA joue de manière à ce qu'elle puisse faire le plus de points en ligne droite. Ainsi, dès qu'elle peut remplir un carré, elle le remplit. Si elle ne peut pas en remplir un, alors elle joue à un endroit aléatoire du plateau, en faisant attention de ne pas choisir un trait déjà rempli.
+\end{document}

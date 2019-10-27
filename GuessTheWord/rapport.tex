@@ -1,0 +1,37 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}     
+
+\title{Compte-rendu du jeu du Pendu}
+\author{Quentin \bsc{SAUVAGE}}
+\date{01 Février 2017}
+
+\begin{document}
+\maketitle
+\chapter{Fonctionnement du programme}
+Le programme sélectionne un mot au hasard parmi ceux-disponibles dans le fichier "mots.txt". Il affiche ensuite une fenêtre demandant au joueur de choisir une difficulté parmi "Facile", "Moyen" et "Difficile". Après cela, une nouvelle interface est créé, où le joueur peut retrouver le mot qu'il doit trouver (représenté avec des '*' selon les lettres dévoilées), le nombre de vies restantes, et le dessin du pendu, qui évolue en fonction du nombre de vies. Le joueur a accès à un clavier composée des lettres de l'alphabet, et d'une touche abandon, permettant de mettre fin à la partie.
+
+Quand le joueur clique sur une lettre, il perd une vie ou dévoile cette lettre dans le mot si elle en fait partie. Lorsqu'il n'a plus de vie ou lorsque le mot est entièrement trouvé, la partie s'arrête. Le programme demande alors au joueur s'il veut refaire une partie ou quitter, et lui indique où en est sa série de victoires. Cette série de victoires retombe à 0 s'il perd.
+\chapter{Difficultés rencontrées}
+\section{Gestion des flux d'entrées}
+J'ai eu des difficultés au départ à gérer la taille de la fenêtre selon les panneaux qui la composent. Un bug est donc encore parfois présent lorsque doit s'afficher l'écran de fin : La fenêtre ne possède pas la taille souhaitée.
+
+Je voulais initialement afficher un message disant "Au revoir" lorsque le joueur souhaite arrêter le jeu. En utilisant Thread.sleep(1000), la fenêtre se fermait au bout d'une seconde, mais l'écran de fin restait affiché à la place du message. J'ai donc abandonné cette idée et le joueur doit maintenant cliquer sur la croix pour terminer le programme.
+
+Pour dessiner le pendu, j'ai utilisé des méthodes telles que fillPolygon. Les coordonnées des bras par exemple sont donc placées sans tenir compte de la taille de la fenêtre, c'est pourquoi il est impossible de la redimensionner.
+
+\chapter{Ajouts}
+\section{Série de victoires}
+Le joueur peut consulter à combien de victoires successives il en est. S'il perd, le compteur retombe à zéro, sinon, il augmente de un.
+
+\section{Stockage des mots dans un fichier texte}
+Au lieu de stocker les mots en brut dans un tableau de String, le programme récupère une liste de mots stockée dans le fichier mots.txt, à partir de laquelle il extrait le mot à deviner.
+
+\section{Affichage du pendu}
+À chaque vie perdue, le pendu se dessine un peu plus, et change de couleur, allant de manière générale du blanc vers le noir. Le dessin du pendu est composé de plusieurs éléments, représentant chaque vie : La poutre horizontale, la poutre verticale, l'angle de la potence, la corde, la tête du joueur, son ventre, le bras gauche, le bras droite, et les jambes.
+
+\section{Ajouts imaginés}
+J'aurais souhaité dessiner progressivement le pendu grâce à des animations, où le bras, par exemple, se dessinerait petit à petit sur un intervalle donné. J'avais également pensé à demander au joueur de rentrer un nom afin de l'identifier.
+\end{document}

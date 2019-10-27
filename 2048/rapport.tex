@@ -1,0 +1,51 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}     
+
+\title{Compte-rendu du jeu 2048}
+\author{Quentin \bsc{SAUVAGE}}
+\date{01 Mars 2017}
+
+\begin{document}
+\maketitle
+\chapter{Fonctionnement du programme}
+Au lancement du jeu, le plateau contenant les tuiles est directement affiché. Le joueur peut également consulter son score, situé au-dessus du plateau. Plusieurs commandes sont mises à sa disposition, il peut les consulter en appuyant sur la touche 'H', et les masquer en rappuyant dessus. Ces commandes sont les suivantes :
+
+- Les flèches directionnelles, permettant de faire fusionner les tuiles entre elles.
+
+- La touche 'H' pour afficher/masquer la description.
+
+- La touche 'J' pour réinitialiser le jeu.
+
+- La barre espace pour activer/désactiver l'Intelligence Artificielle.
+
+- La touche 'Échap' pour fermer le jeu.
+
+Une fois que le joueur a atteint la tuile 2048, le programme lui demande s'il souhaite recommencer une partie ou continuer celle déjà en cours.
+
+\chapter{Structure du programme}
+
+Voici le rôle de chacune des classes du programme:
+
+- Constantes est une Interface qui regroupe les constantes utiles au fonctionnement du jeu : Le nombre de colonnes/lignes de tuiles, le nombre de Pixels par case, et la distance entre chaque tuile.
+
+- DemoJeu permet de créer le jeu et de le lancer.
+
+- Fenetre : une JFrame qui contient tous les éléments graphiques du jeu et permet de faire le lien entre ces derniers et la classe Jeu.
+
+- Jeu regroupe la gestion des éléments définissant le jeu, tels qu'un tableau contenant les tuiles, ou un booléen indiquant si le joueur a gagné ou non.
+
+- PanneauFin est un JPanel qui demande au joueur s'il veut refaire une partie ou quitter le jeu.
+
+- PanneauScore est un JPanel situé au-dessus du plateau de jeu, indiquant au joueur le score qu'il possède.
+
+- Plateau est le JPanel principal du programme. Il permet d'afficher de manière harmonieuse les tuiles et couleurs de fond. Il affiche également "GAME OVER" quand le joueur a perdu.
+
+-Tuile gère le comportement de chacune des tuiles du plateau,  tout en mettant à jour leur aspect graphique et leurs coordonnées.
+
+\chapter{Fonctionnement de l'IA}
+\section{Premier fonctionnement de l'IA}
+L'IA se déplace aléatoirement parmi les quatre directions possibles jusqu'à ce qu'elle ne puisse plus se déplacer. Elle était censée faire en sorte de toujours choisir la direction permettant de faire fusionner la plus grosse tuile possible, mais cette idée a été abandonnée à cause d'un bug qui bloquait l'IA si une ligne était remplie et qu'elle voulait se déplacer dans la ligne opposée (Par exemple : Si la ligne du bas est pleine, et que l'IA veut se déplacer vers le haut).
+\end{document}

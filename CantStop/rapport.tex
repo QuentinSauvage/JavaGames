@@ -1,0 +1,62 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}     
+
+\title{Compte-rendu du Can't Stop}
+\author{Quentin \bsc{SAUVAGE}}
+\date{22 Mars 2017}
+
+\begin{document}
+\maketitle
+\chapter{Fonctionnement du programme}
+Le jeu commence avec une fenêtre demandant au joueur d'indiquer le nombre de joueurs humains. Une fois son choix validé, la fenêtre du jeu s'affiche. Seul le joueur qui doit jouer peut lancer les dés, et il ne peut pas passer son tour ou relancer les dés tant qu'il n'a pas choisi une action à faire (c'est-à-dire choisir un couple de voies à monter, ou une seule voie parmi deux si un grimpeur peut monter sur les deux). Après avoir grimpé autant de fois qu'il le voulait/pouvait, le joueur suivant peut jouer et a accès à toutes ses informations. Une fois qu'un joueur a gagné, le jeu demande si une partie doit être recréer. Si c'est le cas, le nombre de joueurs humains est à nouveau demandé.
+
+\chapter{Structure du programme}
+
+Voici le rôle de chacune des classes du programme:
+
+- ActionJoueur affiche sous forme de boutons les différents couples de voies sélectionnables par le joueur.
+
+- ChoixJoueur affiche les deux voies pouvant être empruntées par le grimpeur si celui-ci n'a pas de voie affectée et les autres grimpeurs en ont déjà une.
+
+- Chrono permet de redessiner régulièrement la fenêtre.
+
+- De représente les dés lancés au moins une fois par tour, indiquant au joueur sur quelles voies il peut monter.
+
+- Fenetre crée le jeu avec les panneaux des joueurs, des dés et du plateau,  et affiche les panneaux de début et de fin de jeu.
+
+- Grimpeur représente les grimpeurs de chaque joueurs qui sont chacun affectés à une position d'une voie.
+
+- IA est un Joueur qui joue sans intervention humaine, en choisissant seule la voie à affecter aux grimpeurs à chaque tour.
+
+- La classe Joueur possède une liste de dés mis à jour à chaque tirage, une liste de trois grimpeurs placés sur une voie à chaque tour, et une liste de pions représentant où ce joueur en est sur chaque voie.
+
+- Main permet d'instancier la fenêtre.
+
+- Modele contient la liste des voies du jeu, ainsi que la liste de joueurs et le nombre de joueurs humains.
+
+- OptionPaneFin affiche un message indiquant que le jouer X a gagné, et demande aux joueurs de recommencer une partie ou quitter.
+
+- Pair permet de définir des couples d'entiers.
+
+- PanelDe affiche un dé à partir d'une image et de la valeur des dés lancés.
+
+- PanelJoueur affiche pour un joueur donné, son nom et ses actions (lancer ou stop).
+
+- PanneauChoix représente le panneau de début de jeu, demandant au joueur de choisir le nombre de joueurs humains.
+
+- Pion représente un pion possédé par un joueur. A chaque tour, les grimpeurs partiront de la position du pion si celui est initialisé, ou du bas de la voie sinon.
+
+- Plateau dessine les voies, du bas jusqu'au haut, du jeu, et les grimpeurs et pions du joueur actuel.
+
+-SlideChoix permet de mettre en place un Slider entre 1 et 4, représentant le nombre de joueurs humains à choisir.
+
+- Voie représente une des voies du plateau. Elle permet au jeu de savoir quand le pion d'un joueur a atteint le sommet, et donc de savoir si le jeu est fini en indiquant si un joueur a obtenu trois pions au sommet.
+
+\chapter{Fonctionnement de l'IA}
+\section{Premier fonctionnement de l'IA}
+A chaque tour, l'IA définit aléatoirement un certain nombre de tours à jouer, entre 3 et 6. Elle lance alors autant de fois les dés, et à chaque fois, elle calcule les voies disponibles. Elle essaie en priorité de faire monter ses pions les plus avancés (dont la position est la plus haute). Elle arrête donc de lancer les dés une fois qu'elle les a lancé le nombre définit de fois, ou dès qu'elle a chuté.
+Le rafraîchissement n'est cependant pas fait (le joueur humain peut jouer directement après avoir appuyé sur stop), pour voir les pions de l'IA, il faut donc demander au plateau de les afficher.
+\end{document}

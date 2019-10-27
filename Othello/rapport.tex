@@ -1,0 +1,59 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}     
+
+\title{Compte-rendu du jeu Othello}
+\author{Quentin \bsc{SAUVAGE}}
+\date{26 avril 2017}
+
+\begin{document}
+\maketitle
+\chapter{Fonctionnement du programme}
+Le jeu débute sur une fenêtre accueillant le joueur et lui proposant de jouer contre un joueur humain ou contre l'IA. Après avoir choisi, une nouvelle fenêtre s'ouvre, contenant le plateau de jeu et divers éléments utiles à son déroulement. Un à un les joueurs placent leurs pions jusqu'à ce qu'il n'y ait plus de places. Si le joueur décide de jouer contre l'IA, il devra cliquer sur le plateau afin de déclencher le tour de l'IA. Une fois la partie finie le joueur peut choisir de relancer une partie ou de quitter.
+
+\chapter{Structure du programme}
+
+Voici le rôle de chacune des classes du programme:
+
+\medbreak
+Package controler :
+
+- AbstractControler définit les méthodes devant être utilisées par GrilleControler.
+
+- GrilleControler vérifie les actions du joueur en appelant les méthodes adéquates du Model.
+
+\medbreak
+Package initialisation :
+
+- Main permet de lancer l'application.
+
+- Debut permet de définir les paramètres de la partie : Présence ou non d'IA.
+
+\medbreak
+Package model :
+
+- AbstractModel définit les méthodes et attributs de Grille.
+
+- Grille permet à la classe GrilleControler d'avoir accès à différentes infos sur le jeu tel que "Le joueur ne peut pas jouer ici", ou encore "Le joueur a gagné".
+
+- Observable est une interface définissant les méthodes permettant au Model de gérer ses Observers. 
+
+\medbreak
+Package view :
+- Case représente graphiquement un pion du plateau.
+
+- GuiGrille contient tous les éléments graphiques du jeu.
+
+- Observer définit les méthodes mettant à jour les Objet Observables.
+
+\chapter{Fonctionnement de l'IA}
+\section{Premier fonctionnement de l'IA}
+J'ai essayé de faire une IA anticipant les coups de l'adversaire mais comme cela ne marchait pas, je me suis rabattu sur une IA jouant à chaque tour sur la case l'avantageant au mieux. Il est donc malheureusement presque impossible de battre l'IA à moins de jouer également parfaitement à chaque tour ou en essayant d'anticiper ses coups.
+
+\chapter{Difficultés principales du projet}
+La difficulté principale a été de pouvoir reconnaître les pions devant être retournés, puisqu'il y avait huit directions à vérifier. Il fallait ainsi pour chaque direction vérifier que le pion n'était pas au bord du plateau et que celui-ci possédait un pion de la même couleur en suivant la direction choisi. Il a également fallu vérifier qu'un joueur ne soit capable de passer un tour que s'il y était vraiment obligé.
+
+
+\end{document}

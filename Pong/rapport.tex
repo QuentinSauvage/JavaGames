@@ -1,0 +1,47 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}     
+
+\title{Compte-rendu du Pong}
+\author{Quentin \bsc{SAUVAGE}}
+\date{15 Mars 2017}
+
+\begin{document}
+\maketitle
+\chapter{Fonctionnement du programme}
+Le jeu se lance sur une fenêtre demandant au joueur de choisir s'il veut jouer avec l'IA. Après cela, le plateau de jeu s'affiche. Le jeu se joue avec 'S', 'Z' et les flèches haut et bas. Une fois que la partie est finie, le joueur peut choisir de commencer une nouvelle partie en resélectionnant la présence de l'IA. Toutes les 10 secondes, la balle s'accélère. C'est également au bout de cette durée que les nouvelles balles ont une chance d'apparaître.
+
+Problème : La raquette met parfois plus de temps que prévu pour se déplacer (quand celle-ci est gérée au clavier).
+
+\chapter{Structure du programme}
+
+Voici le rôle de chacune des classes du programme:
+
+- Accueil est le panneau sur lequel se lance le jeu. Il demande au joueur d'activer/désactiver l'IA.
+
+- Balle gère les collisions, et déplacements de la balle, ainsi que sa vitesse.
+
+- Chrono permet de redessiner régulièrement la fenêtre.
+
+- ChronoBonus fait apparaître une balle si trop de temps s'est écoulé depuis la précédente.
+
+- Clavier gère les entrées clavier des joueurs (ou du joueur si l'IA est activé). Elle permet donc de déplacer les joueurs et de débuter une manche.
+
+- Fenetre crée le jeu et affiche les panneaux de début et de fin de jeu.
+
+- IA simule une intelligence artificielle jouant à la place du joueur 2 si elle est activée. Elle essaie de renvoyer au mieux la balle.
+
+- Jeu gère le système de points et de manches du jeu. Elle redessine tous les éléments composant le jeu et contient les informations nécessaires à la gestion du jeu et de son déroulement.
+
+- Main instancie une fenêtre.
+
+- Objet défini les attributs des différents objets composant le jeu, tels que les barres et les balles.
+
+- OptionPaneFin affiche un message indiquant que le jouer X a gagné, et demande au joueur de recommencer une partie ou quitter.
+
+\chapter{Fonctionnement de l'IA}
+\section{Premier fonctionnement de l'IA}
+L'IA se déplace en anticipant la trajectoire de la balle. Si la balle est au-dessus du joueur représenté par l'IA, l'IA se déplace vers le haut, sinon, elle se déplace vers le bas. Elle essaie ensuite de taper la balle selon la position du joueur 1 : Si le joueur 1 est au-dessus, elle essaiera de taper la balle avec le bas de la raquette, et inversement. Ses déplacements sont bien-entendu calculés à partir de la balle la plus proche du joueur 2, en tenant compte de la direction des balles.
+\end{document}

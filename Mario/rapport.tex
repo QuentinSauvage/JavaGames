@@ -1,0 +1,18 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}     
+
+\title{Compte-rendu du jeu Mario}
+\author{Quentin \bsc{SAUVAGE}}
+\date{08 Mars 2017}
+
+\begin{document}
+\maketitle
+\chapter{Fonctionnement du programme}
+- Les collisions fonctionnent correctement. Cependant lorsque Mario change de direction, il semble de temps en temps se bloquer si l'utilisateur appuie trop vite sur la flèche de déplacement : Si le joueur se déplace vers la droite, et dans un court laps de temps relâche la flèche de droite et appuie sur celle de gauche, Mario se bloquera pendant environ une seconde, avant de continuer son chemin.
+\vspace*{0.5cm}
+- Ce n'est pas vraiment un bug, mais un personnage vivant entrant en contact avec un personnage mort, changera de direction. Je ne savais pas s'il fallait désactiver la détection de collision avec un personnage mort, j'ai donc dans le doute décidé de la laisser activée (le personnage mort changera aussi sa direction suite à un contact). Toutefois, si Mario rentre en contact avec le personnage mort, rien ne se passe et il peut continuer sa route normalement.
+
+\end{document}
